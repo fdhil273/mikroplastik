@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BlueGuard Edukasi — Selamatkan Laut dari Mikroplastik</title>
+  <meta name="description" content="Web edukasi ramah anak: materi mikroplastik, artikel, quiz 5 level (50 soal), dan mini game RPG. Cocok untuk LKTI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    :root{
+      --bg:#071428; 
+      --pri:#56e1ff; 
+      --accent:#7cffc9; 
+      --card:#0f1720cc;
+      --muted:#9fb0c4; 
+      --text:#eaf6ff; 
+      --radius:16px; 
+      --max:1100px;
+      --kid-bg: 
+      linear-gradient(180deg,#58c7ff14,#7effd622);
+      --glass: rgba(255,255,255,.06);
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{height:100%}
+
+    body{
+      margin:0; 
+      font-family:Inter,system-ui,Arial,sans-serif;
+      color:var(--text); 
+      background:linear-gradient(180deg,var(--bg),#021226);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{
+      color:var(--pri); 
+      text-decoration:none
+    }
+
+    .wrap{
+      width:100%; 
+      max-width:var(--max); 
+      margin:0 auto; 
+      padding:18px
+    }
+
+    /* NAV */
+
+    nav{
+    position:fixed; 
+    left:0; 
+    right:0; 
+    top:10px; 
+    z-index:60; 
+    display:flex; 
+    justify-content:center
+    }
+
+    .nav-inner{
+    width:100%; 
+    max-width:var(--max); 
+    display:flex; 
+    gap:12px; 
+    align-items:center; 
+    padding:8px 12px; 
+    background:rgba(2,8,16,.2); 
+    border-radius:12px; 
+    backdrop-filter: blur(6px); 
+    border:1px solid rgba(255,255,255,.04)
+    }
+
+    .brand{
+    display:flex; 
+    align-items:center; 
+    gap:10px; 
+    font-weight:700
+    }
+
+    .brand .logo{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--pri);
+    box-shadow:0 0 12px var(--pri)
+    }
+
+    .nav-links{
+    margin-left:auto; 
+    display:flex; 
+    gap:10px; 
+    flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:var(--text); 
+      padding:8px 10px; 
+      border-radius:10px; 
+      font-weight:600
+    }
+
+    .btn-minor{
+      background:rgba(255,255,255,.05); 
+      padding:8px 12px; 
+      border-radius:10px; 
+      color:var(--text); 
+      border:1px solid rgba(255,255,255,.04)
+    }
+
+    /* HERO */
+
+    header.hero{
+      min-height:78vh; 
+      display:grid; 
+      align-items:center; 
+      margin-top:18px; 
+      position:relative; 
+      overflow:hidden
+    }
+
+    header.hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(800px 400px at 10% 20%, rgba(86,225,255,.06), transparent 20%);
+    }    
+
+    .bubble{
+      position:absolute; 
+      bottom:-60px; 
+      width:8px; 
+      height:8px; 
+      border-radius:50%; 
+      background:rgba(124,255,201,.55); 
+      box-shadow:0 0 10px rgba(124,255,201,.6); 
+      animation: rise 8s linear infinite
+    }
+    
+    @keyframes rise{0%{transform:translateY(0) scale(1)} 100%{transform:translateY(-110vh) scale(.6)}}
+    
+    .hero-inner{
+      display:flex; 
+      gap:26px; 
+      align-items:center; 
+      width:100%; 
+      padding:48px 18px
+    }
+
+    .hero-left{
+      flex:1; 
+      max-width:640px
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:6px 12px;
+      background:rgba(86,225,255,.08);
+      color:var(--accent);
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px
+    }
+
+    h1.title{
+      font-size:clamp(28px,4.8vw,48px); 
+      margin:16px 0 8px; 
+      line-height:1.02
+    }
+
+    p.lead{
+      color:var(--muted); 
+      max-width:56ch;
+    }
+
+    .hero-cta{
+      margin-top:18px; 
+      display:flex; 
+      gap:12px; 
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:0;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg,var(--pri),#7adfff); 
+      color:#01323a; 
+      box-shadow:0 10px 30px rgba(86,225,255,.08);
+    }
+
+    .btn-ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,.06); 
+      color:var(--text);
+    }
+
+    .hero-right{
+      width:420px;
+      padding:18px;
+      background:var(--kid-bg);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.06);
+      box-shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .hero-illu{
+      height:240px; 
+      border-radius:12px; 
+      margin-bottom:12px; 
+      position:relative; 
+      overflow:hidden
+    }
+
+    .hero-illu::before{
+      content:""; 
+      position:absolute; 
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 20%, #a6f0ff22, transparent 12%),
+        url('laut.jpg') center/cover;
+      filter:saturate(1.1) contrast(1.02);
+    }
+
+    .quick-list{
+      display:grid; 
+      grid-template-columns:1fr 1fr; 
+      gap:8px; 
+      color:#002a33; 
+      font-weight:700
+    }
+
+    .chip{
+      background:#001b22aa;
+      padding:8px;
+      border-radius:10px;
+      color:var(--text);
+      font-weight:600
+    }
+
+    /* SECTIONS */
+
+    section{
+      padding:56px 18px
+    }
+
+    .container{
+      width:100%; 
+      max-width:var(--max); 
+      margin:0 auto
+    }
+
+    .card{
+      background:var(--card); 
+      border-radius:var(--radius); 
+      padding:18px; 
+      border:1px solid rgba(255,255,255,.04); 
+      box-shadow:0 8px 20px rgba(0,0,0,.45); 
+      color:var(--text)
+    }
+
+    .grid{
+      display:grid; 
+      gap:18px
+    }
+
+    .grid-2{
+      grid-template-columns:1fr 1fr
+    }
+
+    .grid-3{
+      grid-template-columns:repeat(3,1fr)
+    }
+
+    .badge{
+      display:inline-block;background:var(--accent); 
+      color:#00261e;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px
+    }
+
+    h2{
+      margin:0 0 12px; 
+      color:var(--pri)
+    }
+
+    p.lead-small{
+      color:var(--muted)
+    }
+
+    ul.facts{
+      list-style:none;
+      padding:0;
+      margin:8px 0 0;
+      display:grid;
+      gap:8px
+    }
+
+    ul.facts li{
+      background:rgba(255,255,255,.03);
+      padding:10px;
+      border-radius:10px
+    }
+
+    /* GALLERY */
+
+    .gallery{
+      display:grid; 
+      grid-template-columns:repeat(4,1fr); 
+      gap:10px
+    }
+
+    .gallery img{
+      width:100%; 
+      height:120px; 
+      object-fit:cover; 
+      border-radius:10px; 
+      border:1px solid rgba(255,255,255,.05)
+    }
+
+    /* VIDEO ROW */
+
+    .video-row{
+      display:grid; 
+      grid-template-columns:1fr 1fr; 
+      gap:12px
+    }
+
+    .video{
+      position:relative; 
+      padding-top:56.25%; 
+      border-radius:12px; 
+      overflow:hidden; 
+      border:1px solid rgba(255,255,255,.06); 
+      background:#000
+    }
+
+    .video iframe{
+      position:absolute; 
+      inset:0; 
+      width:100%; 
+      height:100%
+    }
+
+    /* MAP/ILLUSTRATION */
+
+    .map{
+      height:260px;
+      background:linear-gradient(180deg,#033a47,#021722);
+      border-radius:14px;
+      position:relative;
+      overflow:hidden
+    }
+
+    .map .pin{
+      position:absolute;
+      transform:translate(-50%,-100%);
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      box-shadow:0 0 16px #ff6b6b
+    
+    }
+
+    /* QUIZ */
+
+    .quiz .opt{
+      display:block;
+      margin:10px 0;
+      padding:10px;
+      border-radius:10px;
+      background:rgba(255,255,255,.03);
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.02)
+    }
+
+    .quiz .opt.correct{
+      outline:3px solid #55ffb0
+    }
+
+    .quiz .opt.wrong{
+      outline:3px solid #ff9b9b
+    }
+
+    .quiz .level-pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      margin:2px 6px 2px 0;
+      font-weight:700
+    }
+
+    .quiz .level-pill.active{
+      background:rgba(124,255,201,.18); 
+      outline:2px solid rgba(124,255,201,.35)
+    }
+
+    /* RPG MINI GAME */
+
+    #rpg{
+      background:linear-gradient(180deg,#00263a,#00121d); border-radius:12px; padding:12px
+    }
+
+    #rpgCanvas{
+      width:100%; 
+      height:340px; 
+      background:#001a24; 
+      border-radius:10px; 
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .hud{
+      display:flex; 
+      justify-content:space-between; 
+      margin-top:8px; 
+      align-items:center; 
+      color:var(--muted); 
+      font-weight:700
+    }
+
+    /* ARTICLES */
+
+    .article-list a{
+      display:block;
+      padding:12px;
+      border-radius:10px;
+      background:rgba(255,255,255,.03);
+      margin-bottom:10px
+    }
+
+    .article-list small{
+      display:block;
+      color:var(--muted)
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:30px 18px;color:var(--muted);
+      border-top:1px solid rgba(255,255,255,.03)
+    }
+
+    @media (max-width:980px){
+      .hero-inner{flex-direction:column-reverse}
+      .hero-right{width:100%}
+      .video-row{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner wrap" role="navigation" aria-label="Navigasi utama">
+      <div class="brand"><span class="logo" aria-hidden="true"></span> BlueGuard Edu</div>
+      <div class="nav-links">
+        <a href="#apa">Pengertian</a>
+        <a href="#asal">Asal</a>
+        <a href="#dampak">Dampak</a>
+        <a href="#cara">Kurangi & Olah</a>
+        <a href="#fakta">Fakta</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#rpgsec">RPG</a>
+        <a href="#artikel">Artikel</a>
+        <a href="#video">Video</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+
+    <!-- gelembung animasi -->
+
+    <div class="bubble" style="left:8%; animation-duration:9s;"></div>
+    <div class="bubble" style="left:22%; animation-duration:7.5s;"></div>
+    <div class="bubble" style="left:37%; animation-duration:8.6s;"></div>
+    <div class="bubble" style="left:54%; animation-duration:10s;"></div>
+    <div class="bubble" style="left:71%; animation-duration:7.7s;"></div>
+    <div class="bubble" style="left:86%; animation-duration:8.9s;"></div>
+
+    <div class="wrap hero-inner">
+      <div class="hero-left">
+        <span class="eyebrow">Inisiatif Siswa • LKTI</span>
+        <h1 class="title">Selamatkan Laut — Kenali & Lawan Mikroplastik</h1>
+        <p class="lead">Materi singkat, bahasa mudah, dan game seru untuk anak & remaja. Pelajari apa itu mikroplastik, bagaimana dampaknya, dan langkah sederhana yang bisa kamu lakukan setiap hari.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#apa">Mulai Belajar</a>
+          <a class="btn btn-ghost" href="#quiz">Mulai Quiz</a>
+        </div>
+        <div style="margin-top:14px" class="card">
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1">
+              <strong>Target Edukasi:</strong>
+              <div class="quick-list" style="margin-top:8px">
+                <div class="chip">Paham</div>
+                <div class="chip">Bertindak</div>
+              </div>
+            </div>
+            <div style="text-align:right;color:var(--muted);font-weight:600">Untuk usia: 8–17 tahun</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-right" aria-hidden="false">
+        <div class="hero-illu" role="img" aria-label="Ilustrasi laut ramah anak"></div>
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:800;color:#002a33">Ayo, ikut!</div>
+            <div style="color:var(--muted);font-size:14px">Belajar singkat + quiz + RPG.</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800;color:#002a33">Mode Seru</div>
+            <div style="color:var(--muted);font-size:13px">Quiz 5 Level • RPG</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- GALLERY -->
+
+  <section class="wrap">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <div>
+          <h2>Foto: Plastik & Mikroplastik</h2>
+          <p class="lead-small">Contoh sampah plastik dan situasi di laut agar mudah dibayangkan.</p>
+        </div>
+      </div>
+      <div class="gallery" style="margin-top:10px">
+        <img alt="Sampah plastik di pantai" src="plastik-pantai.jpg">
+        <img alt="Serpihan mikroplastik berwarna" src="mikroplastik.jpeg">
+        <img alt="Botol plastik terapung" src="plastikng.webp">
+        <img alt="Jaring dan plastik" src="moresmapah.jpg">
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGERTIAN -->
+
+  <section id="apa">
+    <div class="container wrap">
+      <div class="section-head">
+        <h2>1) Apa itu Mikroplastik?</h2>
+        <p class="lead-small">Bahasa sederhana + contoh biar cepat paham.</p>
+      </div>
+      <div class="card">
+        <p><strong>Mikroplastik</strong> adalah potongan plastik <em>sangat kecil</em> berukuran kurang dari <strong>5 milimeter</strong>. Bentuknya bisa berupa serpihan, butiran kecil, atau serat halus.</p>
+        <p><u>Contoh mudah:</u> remahan dari kantong plastik yang sobek, bintik-bintik kecil di pasir pantai, atau serat tipis dari baju olahraga saat dicuci.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASAL -->
+
+  <section id="asal">
+    <div class="container wrap">
+      <h2>2) Dari Mana Asalnya?</h2>
+      <p class="lead-small">Sumber sehari-hari yang sering kita jumpai.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="badge">Primer</span>
+          <p>Diproduksi langsung dalam ukuran kecil, seperti <em>microbeads</em> pada kosmetik, serat pakaian sintetis saat dicuci, dan partikel dari ban kendaraan.</p>
+          <p><u>Contoh:</u> scrub wajah lama dengan bintik plastik kecil.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Sekunder</span>
+          <p>Hasil pecahan plastik berukuran besar yang hancur karena sinar UV, cuaca, dan gesekan.</p>
+          <p><u>Contoh:</u> serpihan botol plastik yang terurai di laut.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Serat Pakaian</span>
+          <p>Saat mencuci baju dari polyester/nylon, serat halus bisa lepas dan ikut air limbah.</p>
+          <p><u>Contoh:</u> kaos olahraga, hoodie fleece, jaket parasut.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAMPAK -->
+
+  <section id="dampak">
+    <div class="container wrap">
+      <h2>3) Dampak Mikroplastik</h2>
+      <p class="lead-small">Ringkas, jelas, dan aman untuk anak.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <strong>Hewan Laut</strong>
+          <p>Ikan, burung laut, dan penyu sering <em>menelan plastik</em> karena mirip makanan. Ini bisa membuat perutnya penuh plastik dan sakit.</p>
+          <p><u>Contoh:</u> penyu mengira plastik bening adalah ubur-ubur.</p>
+        </div>
+        <div class="card">
+          <strong>Lingkungan</strong>
+          <p>Plastik <em>sangat lama terurai</em> (puluhan—ratusan tahun), sehingga menumpuk di pantai, sungai, dan laut, merusak kualitas tanah maupun air.</p>
+          <p><u>Contoh:</u> sampah plastik tertimbun di pasir, lalu terbawa ombak kembali ke laut.</p>
+        </div>
+        <div class="card">
+          <strong>Kesehatan Manusia</strong>
+          <p>Mikroplastik bisa masuk lewat makanan laut, air minum, dan udara yang kita hirup. <em>Penelitian masih berjalan</em> untuk memahami dampak jangka panjangnya.</p>
+          <p><u>Contoh:</u> garam laut yang mengandung jejak mikroplastik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA KURANGI & OLAH -->
+
+  <section id="cara">
+    <div class="container wrap">
+      <h2>4) Cara Mengurangi & Mengolah</h2>
+      <p class="lead-small">Langkah kecil yang bisa dilakukan di rumah & sekolah.</p>
+      <div class="grid grid-3" style="margin-top:12px">
+        <div class="card">
+          <strong>Kurangi</strong>
+          <p>Gunakan botol isi ulang, bawa tas kain, pilih barang tahan lama daripada sekali pakai.</p>
+          <p><u>Contoh:</u> bawa tumbler ke sekolah, isi ulang di dispenser.</p>
+        </div>
+        <div class="card">
+          <strong>Cuci Lebih Bijak</strong>
+          <p>Cuci baju sintetis <em>penuh muatan</em> (lebih sedikit gesekan), gunakan kantong filter serat, dan jemur alih-alih pengering.</p>
+          <p><u>Contoh:</u> pakai laundry bag anti-serat.</p>
+        </div>
+        <div class="card">
+          <strong>Pilah & Olah</strong>
+          <p>Pisahkan sampah: organik, daur ulang (PET, PP, kertas), dan sampah lain. Cari bank sampah/TPST di daerahmu.</p>
+          <p><u>Contoh:</u> botol PET bersih dijual ke bank sampah; tutup botol untuk kerajinan.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" class="card">
+        <h3>Praktik Sekolah: Aksi 1 Minggu</h3>
+        <ol style="margin:8px 0 0 18px;color:var(--muted)">
+          <li>Hari 1: Edukasi 10 menit di kelas.</li>
+          <li>Hari 3: Tantangan “Bawa Tumbler”.</li>
+          <li>Hari 5: Laporan singkat — siapa paling banyak mengurangi plastik.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAKTA & AJAKAN -->
+
+  <section id="fakta">
+    <div class="container wrap">
+      <h2>5) Fakta Mengejutkan & Ayo Jaga Lingkungan</h2>
+      <div class="grid grid-2" style="margin-top:12px">
+        <div class="card">
+          <h3>Fakta Mengejutkan</h3>
+          <ul class="facts">
+            <li>Mikroplastik ditemukan di tanah, air, dan udara.</li>
+            <li>Di laut mengapung ratusan triliun partikel mikroplastik.</li>
+            <li>Setiap menit, sekitar satu truk sampah plastik masuk ke laut.</li>
+            <li>Riset mendapati jejak mikroplastik pada garam laut dan bahkan aliran darah manusia.</li>
+            <li>Plastik tidak “hilang” — hanya pecah jadi partikel lebih kecil yang bertahan lama.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Yuk, Ikut Aksi!</h3>
+          <p>Setelah tahu bahayanya, mari menjaga lingkungan sekitar. Setiap langkah kecilmu — mengurangi plastik sekali pakai, memilah sampah, dan tidak membakar sampah — membantu melindungi banyak makhluk hidup di luar sana.</p>
+          <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+            <span class="level-pill">#BawaTumbler</span>
+            <span class="level-pill">#TasKain</span>
+            <span class="level-pill">#PilahSampah</span>
+            <span class="level-pill">#CuciBijak</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ 5 LEVEL -->
+
+  <section id="quiz">
+    <div class="container wrap">
+      <h2>Quiz 5 Level (Total 50 Soal)</h2>
+      <p class="lead-small">Pilih level, jawab 10 soal per level. Dapatkan skor dan naik ke level berikutnya!</p>
+
+      <div class="card quiz" id="quizCard" aria-labelledby="quiz-title">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <div>
+            <h3 id="quiz-title" style="margin:0">Pilih Level</h3>
+            <div id="levelPills" style="margin-top:6px"></div>
+          </div>
+          <div>
+            <button class="btn btn-primary" id="startLevelBtn">Mulai Level</button>
+          </div>
+        </div>
+
+        <div id="quizUI" style="display:none; margin-top:12px">
+          <div id="qHead" style="display:flex;justify-content:space-between;align-items:center">
+            <div>Level: <strong id="curLevel">1</strong> • Soal <strong id="curNum">1</strong>/10</div>
+            <div>Skor: <strong id="curScore">0</strong></div>
+          </div>
+          <div style="margin-top:10px; font-weight:700" id="qText"></div>
+          <div id="opts" style="margin-top:8px"></div>
+          <div style="margin-top:10px; display:flex; gap:8px; align-items:center">
+            <button class="btn btn-primary" id="submitQ">Kunci Jawaban</button>
+            <button class="btn btn-ghost" id="nextQ" disabled>Pertanyaan Berikutnya</button>
+          </div>
+          <div id="quizResult" style="margin-top:10px;color:var(--muted)"></div>
+        </div>
+
+        <div id="quizEnd" class="card" style="display:none; margin-top:12px; background:rgba(255,255,255,.03)">
+          <h3>Level Selesai!</h3>
+          <p id="endText" class="lead-small"></p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
+            <button class="btn btn-primary" id="retryLevel">Ulangi Level</button>
+            <button class="btn btn-ghost" id="nextLevel">Lanjut ke Level Berikutnya</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RPG SANTAI -->
+
+  <section id="rpgsec">
+    <div class="container wrap">
+      <h2>RPG Santai: <em>Diver Clean-Up</em></h2>
+      <p class="lead-small">Gerakkan penyelam (← ↑ → ↓ / WASD). Kumpulkan sampah plastik (＋1), hindari ubur-ubur (−1). Selesaikan target untuk naik level!</p>
+      <div class="card" id="rpg">
+        <canvas id="rpgCanvas" width="960" height="340" aria-label="Permainan RPG pembersihan laut"></canvas>
+        <div class="hud">
+          <div>Level: <strong id="rpgLevel">1</strong> • Target: <strong id="rpgTarget">8</strong> • Skor: <strong id="rpgScore">0</strong></div>
+          <div><button class="btn btn-primary" id="rpgStart">Mulai / Ulangi</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+
+  <section id="video">
+    <div class="container wrap">
+      <h2>Video Edukasi (YouTube)</h2>
+      <p class="lead-small">Kumpulan video pendek & penjelasan untuk menambah wawasan.</p>
+      <div class="video-row" style="margin-top:10px">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/_1ybmYC_yn4" title="YouTube Shorts 1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/3UM5i6J97cs" title="YouTube Shorts 2" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-row" style="margin-top:12px">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/chF9eQeOQVI" title="Video 3" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/COdCKbIw-s4" title="Video 4" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-row" style="margin-top:12px">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/gMtubddLVSk" title="Video 5" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="card" style="display:flex;align-items:center;justify-content:center">
+          <div>
+            <strong>Tip menonton:</strong>
+            <ul class="facts" style="margin-top:8px">
+              <li>Catat 3 hal baru setelah menonton.</li>
+              <li>Diskusikan satu aksi yang bisa dilakukan rumah/sekolah.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+
+  <section id="artikel">
+    <div class="container wrap">
+      <h2>Artikel & Bacaan Lanjut</h2>
+      <p class="lead-small">Sumber terpercaya untuk pendalaman materi. (Pisah: Internasional vs Indonesia)</p>
+
+      <div class="grid grid-2" style="margin-top:12px">
+
+        <!-- Internasional -->
+
+        <div class="card article-list">
+          <h3>Internasional</h3>
+          <a href="https://www.unep.org/interactives/beat-plastic-pollution/" target="_blank" rel="noopener">
+            UNEP — Beat Plastic Pollution
+            <small>Ringkasan global & aksi</small>
+          </a>
+          <a href="https://www.who.int/news-room/fact-sheets/detail/microplastics-in-drinking-water" target="_blank" rel="noopener">
+            WHO — Microplastics in Drinking Water
+            <small>Fakta ilmiah singkat</small>
+          </a>
+          <a href="https://theoceancleanup.com/" target="_blank" rel="noopener">
+            The Ocean Cleanup
+            <small>Proyek pembersihan sungai & laut</small>
+          </a>
+          <a href="https://oceanservice.noaa.gov/facts/microplastics.html" target="_blank" rel="noopener">
+            NOAA — What are Microplastics?
+            <small>Penjelasan edukatif</small>
+          </a>
+          <a href="https://www.nature.com/collections/hdfdchchhj" target="_blank" rel="noopener">
+            Nature — Microplastics (Collection)
+            <small>Kumpulan riset terkini</small>
+          </a>
+        </div>
+
+        <!-- Indonesia -->
+
+        <div class="card article-list">
+          <h3>Indonesia</h3>
+          <a href="https://www.menlhk.go.id/" target="_blank" rel="noopener">
+            KLHK — Kementerian Lingkungan Hidup & Kehutanan
+            <small>Kebijakan & program pengelolaan sampah plastik</small>
+          </a>
+          <a href="https://brin.go.id/" target="_blank" rel="noopener">
+            BRIN — Riset Mikroplastik
+            <small>Publikasi & berita riset nasional</small>
+          </a>
+          <a href="https://www.itb.ac.id/berita" target="_blank" rel="noopener">
+            ITB — Berita Riset Lingkungan
+            <small>Riset kampus terkait mikroplastik</small>
+          </a>
+          <a href="https://www.ugm.ac.id/id/berita/" target="_blank" rel="noopener">
+            UGM — Berita & Opini Sains
+            <small>Artikel edukasi & penelitian</small>
+          </a>
+          <a href="https://www.walhi.or.id/" target="_blank" rel="noopener">
+            WALHI — Kampanye Lingkungan
+            <small>Materi advokasi & edukasi publik</small>
+          </a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <p style="margin:0;color:var(--muted)">Catatan: untuk keperluan LKTI, tulis daftar pustaka lengkap sesuai format lomba (APA/MLA) dan gunakan artikel spesifik (judul, penulis, tahun) dari situs di atas.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;align-items:center">
+      <div>
+        <strong style="color:var(--pri)">BlueGuard Edu</strong><br>
+        <small>© 2025 — Untuk LKTI • Disusun oleh tim siswa</small>
+      </div>
+      <div style="color:var(--muted)">Sumber utama: UNEP • WHO • NOAA • The Ocean Cleanup • BRIN • KLHK</div>
+    </div>
+  </footer>
+
+  <script>
+
+    /* ------------------------------
+       BUBBLE randomizer (hero)
+       ------------------------------ */
+
+    (function(){
+      for(let i=0;i<8;i++){
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        b.style.left = (5 + Math.random()*90) + '%';
+        b.style.animationDuration = (7 + Math.random()*4).toFixed(2) + 's';
+        document.querySelector('header.hero').appendChild(b);
+      }
+    })();
+
+    /* ------------------------------
+       QUIZ 5 LEVEL — 10 soal per level
+       ------------------------------ */
+
+    (function(){
+      const levelPills = document.getElementById('levelPills');
+      const startBtn = document.getElementById('startLevelBtn');
+      const quizUI = document.getElementById('quizUI');
+      const qText = document.getElementById('qText');
+      const optsDiv = document.getElementById('opts');
+      const submitBtn = document.getElementById('submitQ');
+      const nextBtn = document.getElementById('nextQ');
+      const result = document.getElementById('quizResult');
+      const curLevelEl = document.getElementById('curLevel');
+      const curNumEl = document.getElementById('curNum');
+      const curScoreEl = document.getElementById('curScore');
+      const endBox = document.getElementById('quizEnd');
+      const endText = document.getElementById('endText');
+      const retryLevel = document.getElementById('retryLevel');
+      const nextLevel = document.getElementById('nextLevel');
+
+      // Bank soal: 5 level x 10 soal
+      // Format: {q:'', opts:['','','',''], ans:index}
+
+      const bank = [
+
+        // LEVEL 1 — dasar pengertian
+
+        [
+          {q:'Mikroplastik adalah potongan plastik berukuran kurang dari ...', opts:['5 milimeter','5 sentimeter','5 meter','5 mikrometer'], ans:0},
+          {q:'Bentuk mikroplastik antara lain ...', opts:['Batu dan kerikil','Serpihan, butiran, serat','Kayu dan pasir','Kaca dan logam'], ans:1},
+          {q:'Contoh paling sederhana mikroplastik di rumah adalah ...', opts:['Serpihan cat dinding','Remahan kantong plastik sobek','Bubuk kopi','Garam meja'], ans:1},
+          {q:'Istilah microbeads merujuk pada ...', opts:['Serat pakaian','Butiran plastik kecil pada kosmetik','Limbah makanan','Karet ban'], ans:1},
+          {q:'Mikroplastik bisa terlihat seperti ...', opts:['Ubur-ubur bagi penyu','Rumput bagi sapi','Batu bagi manusia','Awan bagi burung'], ans:0},
+          {q:'Sumber primer mikroplastik adalah ...', opts:['Pecahan botol di pantai','Microbeads kosmetik','Jaring ikan rusak','Sedotan bekas'], ans:1},
+          {q:'Sumber sekunder mikroplastik adalah ...', opts:['Serat dari pakaian saat dicuci','Partikel ban kendaraan','Plastik besar terurai jadi kecil','Butiran kosmetik'], ans:2},
+          {q:'Serat sintetis yang sering lepas saat mencuci adalah ...', opts:['Katun','Linen','Polyester/nylon','Wol'], ans:2},
+          {q:'Kenapa mikroplastik masalah bagi laut?', opts:['Mudah larut jadi air','Disukai ikan sebagai makanan palsu','Mengurai jadi pupuk','Menghasilkan oksigen'], ans:1},
+          {q:'Mikroplastik ditemukan di ...', opts:['Hanya di laut','Tanah, air, dan udara','Hanya di gurun','Hanya di kutub'], ans:1}
+        ],
+        
+        // LEVEL 2 — contoh keseharian
+
+        [
+          {q:'Saat mencuci baju sintetis, bagaimana mengurangi serat yang lepas?', opts:['Cuci setengah muatan','Cuci penuh & gunakan kantong filter','Tambah deterjen berlebih','Gunakan air panas sekali'], ans:1},
+          {q:'Kebiasaan mana yang membantu kurangi plastik sekali pakai?', opts:['Membeli air kemasan tiap hari','Bawa tumbler isi ulang','Memakai sedotan plastik','Belanja pakai kantong kresek'], ans:1},
+          {q:'Contoh sampah yang bisa didaur ulang di banyak daerah:', opts:['Botol PET bersih','Tisu bekas','Makanan basi','Daun kering'], ans:0},
+          {q:'Menghangatkan makanan di wadah plastik dapat ...', opts:['Mengurangi mikroplastik','Meningkatkan pelepasan partikel','Tidak berpengaruh','Membuat plastik lebih kuat'], ans:1},
+          {q:'Partikel dari ban kendaraan termasuk ...', opts:['Mikroplastik primer','Mikroplastik sekunder','Bukan mikroplastik','Gas rumah kaca'], ans:0},
+          {q:'Pilih tindakan yang benar saat piknik:', opts:['Buang sampah ke sungai biar terbawa','Bawa pulang sampah & pilah','Bakar plastik di tempat','Tinggalkan di tempat agar petugas ambil'], ans:1},
+          {q:'Laundry bag anti-serat berfungsi untuk ...', opts:['Mempercepat pengeringan','Menahan serat agar tak lepas ke air limbah','Mengganti deterjen','Menggantikan mesin cuci'], ans:1},
+          {q:'Kemasan ramah lingkungan yang disarankan:', opts:['Sekali pakai styrofoam','Multiple-use/isi ulang','Plastik tipis sekali pakai','Kantong kresek'], ans:1},
+          {q:'Di sekolah, aksi cepat 1 minggu yang efektif adalah ...', opts:['Lomba tambah plastik','Tantangan Bawa Tumbler','Buang sampah campur','Menghapus tempat sampah'], ans:1},
+          {q:'Pemisahan sampah memudahkan ...', opts:['Pencampuran limbah','Pengolahan & daur ulang','Pelepasan mikroplastik','Pembakaran terbuka'], ans:1}
+        ],
+        
+        // LEVEL 3 — dampak
+
+        [
+          {q:'Mengapa penyu sering menelan plastik bening?', opts:['Karena mirip ubur-ubur','Karena wangi','Karena keras','Karena menyala'], ans:0},
+          {q:'Akumulasi plastik di perut hewan laut dapat menyebabkan ...', opts:['Kenyang palsu & sakit','Pertumbuhan cepat','Kebal penyakit','Lebih banyak oksigen'], ans:0},
+          {q:'Di lingkungan, plastik butuh waktu ...', opts:['Hitungan hari','Puluhan—ratusan tahun','Satu jam','Satu minggu'], ans:1},
+          {q:'Mikroplastik pada manusia dapat masuk lewat ...', opts:['Udara, air, dan makanan','Hanya lewat kulit','Hanya lewat minuman bersoda','Tidak bisa masuk'], ans:0},
+          {q:'Penelitian tentang dampak mikroplastik pada kesehatan manusia ...', opts:['Sudah tuntas','Masih berlangsung','Tidak ada','Dilarang dilakukan'], ans:1},
+          {q:'Contoh produk makanan yang pernah ditemukan mengandung jejak mikroplastik:', opts:['Garam laut','Beras','Gula pasir','Kopi bubuk'], ans:0},
+          {q:'Menumpuknya plastik di pantai menyebabkan ...', opts:['Kesuburan tanah meningkat','Kerusakan ekosistem & estetika','Udara makin bersih','Ikan makin banyak'], ans:1},
+          {q:'Mikroplastik di sungai berpotensi ...', opts:['Membersihkan air','Masuk ke laut','Mengikat oksigen','Mengubah air jadi garam'], ans:1},
+          {q:'Jika sampah plastik dibakar terbuka, risikonya ...', opts:['Asap berbahaya & polusi','Makin mudah didaur ulang','Jadi pupuk','Menghilangkan mikroplastik total'], ans:0},
+          {q:'Mengurangi plastik sekali pakai berdampak ...', opts:['Tidak ada perubahan','Mengurangi sumber mikroplastik','Menambah sampah','Membuang waktu'], ans:1}
+        ],
+
+        // LEVEL 4 — strategi & data
+
+        [
+          {q:'Langkah pertama pengelolaan sampah rumahan yang efektif:', opts:['Mencampur semua','Memilah organik, daur ulang, residu','Membuang ke sungai','Membakar di halaman'], ans:1},
+          {q:'Bank sampah/TPST bermanfaat untuk ...', opts:['Menjual material daur ulang & edukasi','Membuang sampah ke laut','Menaikkan konsumsi plastik','Membakar sampah massal'], ans:0},
+          {q:'Material berikut yang umumnya <i>bisa</i> didaur ulang:', opts:['PET & PP bersih','Styrofoam kotor','Plastik tercampur organik','Plastik yang dibakar'], ans:0},
+          {q:'Kebijakan pelarangan microbeads pada kosmetik bertujuan ...', opts:['Mengurangi sumber primer mikroplastik','Menambah pemasukan','Memperbanyak limbah','Menaikkan penjualan'], ans:0},
+          {q:'Mengapa reuse (pakai ulang) lebih baik dari recycle?', opts:['Karena keren','Menghindari produksi limbah sejak awal','Tak butuh kebiasaan baru','Karena lebih mahal'], ans:1},
+          {q:'Di sekolah, monitoring aksi dilakukan dengan ...', opts:['Tidak perlu data','Laporan singkat & bukti foto','Membakar sampah','Menambah plastik'], ans:1},
+          {q:'Mencuci air panas untuk plastik makanan ...', opts:['Aman dan disarankan','Dapat meningkatkan pelepasan partikel','Tidak berpengaruh','Membuat plastik awet selamanya'], ans:1},
+          {q:'Serat mikro dapat ditahan dengan ...', opts:['Laundry bag/filter','Air panas','Deterjen banyak','Pengering panas tinggi'], ans:0},
+          {q:'Kegiatan komunitas yang tepat:', opts:['Clean-up sungai & edukasi pilah','Membuang sampah malam hari','Bakar sampah massal','Satu kantong untuk semua'], ans:0},
+          {q:'Kampanye efektif biasanya memiliki ...', opts:['Tagar, target jelas, evaluasi','Poster tanpa aksi','Aksi rahasia','Hanya jargon'], ans:0}
+        ],
+        
+        // LEVEL 5 — tantangan / studi kasus
+
+        [
+          {q:'Studi kasus: kantin sekolah menghasilkan 200 gelas plastik/hari. Solusi terbaik?', opts:['Tetap pakai gelas plastik','Gelas isi ulang + pojok isi air','Bakar semua gelas','Buang ke tempat umum'], ans:1},
+          {q:'Di pantai ditemukan serpihan warna-warni. Ini kemungkinan ...', opts:['Mikroplastik','Kerikil alami','Garam laut','Sisa karang'], ans:0},
+          {q:'Program “Bawa Tumbler” meningkatkan partisipasi jika ...', opts:['Tidak ada sosialisasi','Ada insentif & pengumuman kelas','Dilarang isi ulang','Hanya berlaku untuk guru'], ans:1},
+          {q:'Anda menemukan scrub lama mengandung microbeads. Apa yang tepat?', opts:['Gunakan sampai habis','Buang ke sungai','Berhenti pakai & cari alternatif','Campur dengan pasir'], ans:2},
+          {q:'Tujuan akhir edukasi mikroplastik adalah ...', opts:['Tambah konsumsi plastik','Perubahan perilaku & kebijakan kecil','Tren sesaat','Konten viral saja'], ans:1},
+          {q:'Mikroplastik dari ban banyak ditemukan di ...', opts:['Area lalu lintas padat','Puncak gunung','Dalam gua kapur','Ladang padi tanpa jalan'], ans:0},
+          {q:'Kebiasaan rumah tangga yang perlu dihindari:', opts:['Membakar sampah','Memilah sampah','Menggunakan wadah kaca','Mengisi ulang galon'], ans:0},
+          {q:'Saat belanja, pilihan paling ramah lingkungan:', opts:['Kresek baru tiap toko','Tas kain yang dibawa','Kantong plastik dua lapis','Tidak bawa apa-apa'], ans:1},
+          {q:'Jika suatu bahan sulit didaur ulang, strategi yang lebih baik adalah ...', opts:['Mengurangi penggunaan','Mencampurnya dengan organik','Melempar ke sungai','Membakarnya'], ans:0},
+          {q:'Indikator sukses program anti mikroplastik di sekolah:', opts:['Volume sampah plastik turun','Lebih banyak sedotan plastik','Tempat sampah hilang','Kantin menambah plastik'], ans:0}
+        ]
+      ];
+
+      let currentLevel = 1; // 1..5
+      let idx = 0; // 0..9
+      let score = 0;
+      let selected = null;
+
+      function renderLevelPills(){
+        levelPills.innerHTML = '';
+        for(let i=1;i<=5;i++){
+          const span = document.createElement('span');
+          span.className = 'level-pill' + (i===currentLevel?' active':'');
+          span.textContent = 'Level ' + i;
+          span.tabIndex = 0; span.setAttribute('role','button');
+          span.addEventListener('click', ()=>{ currentLevel = i; updateLevelIndicator(); });
+          span.addEventListener('keypress', (e)=>{ if(e.key==='Enter') { currentLevel = i; updateLevelIndicator(); }});
+          levelPills.appendChild(span);
+        }
+      }
+      function updateLevelIndicator(){
+        document.querySelectorAll('.level-pill').forEach((el,ix)=>{
+          el.classList.toggle('active', ix+1===currentLevel);
+        });
+      }
+
+      function renderQ(){
+        const cur = bank[currentLevel-1][idx];
+        curLevelEl.textContent = currentLevel;
+        curNumEl.textContent = (idx+1);
+        qText.innerHTML = (idx+1)+') '+ cur.q;
+        optsDiv.innerHTML = '';
+        result.textContent = '';
+        selected = null;
+        nextBtn.disabled = true;
+        submitBtn.disabled = false;
+        cur.opts.forEach((o,i)=>{
+          const d = document.createElement('div');
+          d.className = 'opt'; d.dataset.id = i;
+          d.textContent = (String.fromCharCode(65+i))+'. '+ o.replace(/<i>/g,'').replace(/<\/i>/g,'');
+          d.addEventListener('click', ()=>{
+            selected = i;
+            optsDiv.querySelectorAll('.opt').forEach(n=> n.style.outline='');
+            d.style.outline='2px solid rgba(86,225,255,.25)';
+          });
+          optsDiv.appendChild(d);
+        });
+      }
+
+      startBtn.addEventListener('click', ()=>{
+        score = 0; idx = 0; curScoreEl.textContent = score; curLevelEl.textContent = currentLevel;
+        quizUI.style.display = '';
+        endBox.style.display = 'none';
+        renderQ();
+      });
+
+      submitBtn.addEventListener('click', ()=>{
+        if(selected===null){ result.textContent = 'Pilih jawaban dulu ya 😊'; return; }
+        const cur = bank[currentLevel-1][idx];
+        const all = optsDiv.querySelectorAll('.opt');
+        if(selected === cur.ans){
+          all[selected].classList.add('correct');
+          result.textContent = 'Benar! 🎉'; result.style.color = '#9fffcf';
+          score += 1; curScoreEl.textContent = score;
+        } else {
+          all[selected].classList.add('wrong');
+          all[cur.ans].classList.add('correct');
+          result.textContent = 'Kurang tepat. Jawaban benar ditandai hijau.'; result.style.color = '#ffb2b2';
+        }
+        submitBtn.disabled = true; nextBtn.disabled = false;
+      });
+
+      nextBtn.addEventListener('click', ()=>{
+        idx += 1;
+        if(idx >= 10){ // selesai level
+          quizUI.style.display = 'none';
+          endBox.style.display = '';
+          endText.textContent = `Skor kamu: ${score}/10 pada Level ${currentLevel}.`;          
+        } else {
+          // reset style
+          optsDiv.querySelectorAll('.opt').forEach(n=>{ n.classList.remove('correct','wrong'); n.style.outline=''; });
+          renderQ();
+        }
+      });
+
+      retryLevel.addEventListener('click', ()=>{
+        score = 0; idx = 0; curScoreEl.textContent = score; endBox.style.display='none'; quizUI.style.display=''; renderQ();
+      });
+      nextLevel.addEventListener('click', ()=>{
+        currentLevel = Math.min(5, currentLevel+1); updateLevelIndicator(); endBox.style.display='none';
+        score = 0; idx = 0; curScoreEl.textContent = score; quizUI.style.display=''; renderQ();
+      });
+
+      renderLevelPills();
+    })();
+
+    /* ------------------------------
+       RPG SANTAI: Diver Clean-Up
+       (dipertahankan — dua mini-game lain dihapus)
+       ------------------------------ */
+
+    (function(){
+      const canvas = document.getElementById('rpgCanvas');
+      const ctx = canvas.getContext('2d');
+      const levelEl = document.getElementById('rpgLevel');
+      const targetEl = document.getElementById('rpgTarget');
+      const scoreEl = document.getElementById('rpgScore');
+      const btn = document.getElementById('rpgStart');
+
+      const W = canvas.width, H = canvas.height;
+      const keys = {};
+      let player, trash, jellies, score=0, level=1, target=8, playing=false, t=0;
+
+      const rand = (a,b)=> a + Math.random()*(b-a);
+      const clamp = (v,a,b)=> Math.max(a, Math.min(b,v));
+
+      function reset(){
+        player = {x:60, y:H/2, r:12, vx:0, vy:0, speed:2.2};
+        trash = []; jellies = []; score = 0; level = 1; target = 8; t=0; playing = true;
+        levelEl.textContent = level; targetEl.textContent = target; scoreEl.textContent = score;
+        spawnWave();
+      }
+
+      function spawnWave(){
+        trash.length = 0; jellies.length = 0;
+        const nTrash = 6 + level*2;
+        const nJel = 1 + Math.floor(level/2);
+        for(let i=0;i<nTrash;i++){
+          trash.push({x: rand(140,W-40), y: rand(30,H-30), r: 8, vx: rand(-.3,.3), vy: rand(-.3,.3), type: ['PET','PP','LD'][Math.floor(Math.random()*3)]});
+        }
+        for(let j=0;j<nJel;j++){
+          jellies.push({x: rand(200,W-40), y: rand(40,H-40), r: 14, t: rand(0,Math.PI*2)});
+        }
+      }
+
+      function drawBG(){
+        const g = ctx.createLinearGradient(0,0,0,H);
+        g.addColorStop(0,'#00263a'); g.addColorStop(1,'#00121d');
+        ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+        ctx.globalAlpha = 0.08;
+        for(let i=0;i<8;i++){
+          ctx.beginPath();
+          ctx.moveTo(0,0);
+          ctx.lineTo(W*rand(.1,.9),H);
+          ctx.lineTo(W*rand(.2,.95),H);
+          ctx.closePath();
+          ctx.fillStyle = '#87efff';
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function drawPlayer(){
+        ctx.fillStyle = '#7cffc9';
+        ctx.beginPath(); ctx.arc(player.x, player.y, player.r, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#00363f';
+        ctx.fillRect(player.x-6, player.y-4, 12, 8);
+        ctx.fillStyle = '#89f3ff';
+        ctx.fillRect(player.x-5, player.y-3, 10, 6);
+        ctx.strokeStyle = '#89f3ff'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(player.x+6, player.y-2); ctx.lineTo(player.x+12, player.y-10); ctx.stroke();
+      }
+
+      function drawTrash(){
+        trash.forEach(o=>{
+          ctx.fillStyle = '#ffd166';
+          ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = '#003a2f';
+          ctx.font = 'bold 10px Inter'; ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText(o.type, o.x, o.y);
+        });
+      }
+
+      function drawJellies(){
+        jellies.forEach(j=>{
+          const wob = Math.sin(t/30 + j.t) * 6;
+          ctx.fillStyle = '#ff6bb38c';
+          ctx.beginPath(); ctx.arc(j.x, j.y, j.r, Math.PI, 0); ctx.quadraticCurveTo(j.x+j.r, j.y+j.r, j.x, j.y+j.r); ctx.quadraticCurveTo(j.x-j.r, j.y+j.r, j.x-j.r, j.y); ctx.fill();
+          ctx.strokeStyle = '#ff9bd3aa'; ctx.lineWidth = 2;
+          for(let i=-2;i<=2;i++){
+            ctx.beginPath();
+            ctx.moveTo(j.x + i*4, j.y + j.r);
+            ctx.quadraticCurveTo(j.x + i*4 + wob*.1, j.y + j.r + 8, j.x + i*4 + wob*.2, j.y + j.r + 16);
+            ctx.stroke();
+          }
+        });
+      }
+
+      function update(){
+        if(!playing) return;
+        t++;
+
+        // movement
+        player.vx = (keys['ArrowRight']||keys['d']?1:0) - (keys['ArrowLeft']||keys['a']?1:0);
+        player.vy = (keys['ArrowDown']||keys['s']?1:0) - (keys['ArrowUp']||keys['w']?1:0);
+        const sp = player.speed;
+        player.x = clamp(player.x + player.vx*sp, 10, W-10);
+        player.y = clamp(player.y + player.vy*sp, 10, H-10);
+
+        // move trash
+        trash.forEach(o=>{ o.x += o.vx; o.y += o.vy; if(o.x<20||o.x>W-20) o.vx*=-1; if(o.y<20||o.y>H-20) o.vy*=-1; });
+        // jellies bob
+        jellies.forEach(j=>{ j.y += Math.sin(t/40 + j.t)*0.5; });
+
+        // collisions
+        for(let i=trash.length-1;i>=0;i--){
+          const o = trash[i]; const dx = o.x-player.x, dy=o.y-player.y;
+          if(dx*dx + dy*dy < (player.r+o.r)*(player.r+o.r)){
+            trash.splice(i,1); score += 1; scoreEl.textContent = score;
+            if(score >= target){
+              level++; levelEl.textContent = level; target = 6 + level*2; targetEl.textContent = target;
+              player.speed += 0.15; spawnWave();
+            }
+          }
+        }
+        for(const j of jellies){
+          const dx = j.x-player.x, dy=j.y-player.y;
+          if(dx*dx + dy*dy < (player.r+j.r)*(player.r+j.r)){
+            score = Math.max(0, score-1); scoreEl.textContent = score;
+            player.x -= dx*0.05; player.y -= dy*0.05;
+          }
+        }
+
+        // draw
+        drawBG(); drawTrash(); drawJellies(); drawPlayer();
+        ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.font='12px Inter'; ctx.fillText('Kumpulkan plastik • Hindari ubur-ubur', 14, 20);
+        requestAnimationFrame(update);
+      }
+
+      btn.addEventListener('click', ()=>{ reset(); update(); });
+      window.addEventListener('keydown', e=> keys[e.key]=true);
+      window.addEventListener('keyup', e=> keys[e.key]=false);
+    })();
+
+    /* Smooth scroll for nav */
+    
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
